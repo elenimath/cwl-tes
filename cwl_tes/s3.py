@@ -251,7 +251,7 @@ class S3FsAccess(StdFsAccess):
         bucket, relpath = _parse_bucket_url(fn)
 
         nbytes = os.fstat(handle.fileno()).st_size
-        self._client.put_object(bucket, relpath, handle, nbytes)
+        self._client.put_object(bucket, relpath, handle, nbytes, metadata={'x-amz-acl': 'public-read'})
 
 
 def _parse_bucket_url(url):
